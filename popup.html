@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeetCode to Collab IDE</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="images/icon48.png" alt="Collab IDE Logo" class="logo">
+      <h1>LeetCode to Collab IDE</h1>
+    </div>
+    
+    <div class="auth-section">
+      <div class="auth-status" id="auth-status">
+        Checking authentication...
+      </div>
+      
+      <div id="login-form" style="display: none;">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        
+        <button id="login-button" class="primary-button">Login</button>
+        <div id="login-error" class="error-message"></div>
+      </div>
+      
+      <div id="user-info" style="display: none;">
+        <div class="user-email" id="user-email"></div>
+        <button id="logout-button" class="secondary-button">Logout</button>
+      </div>
+    </div>
+    
+    <div class="settings-section">
+      <div class="toggle-container">
+        <label class="toggle">
+          <span class="toggle-label">Enable Extension</span>
+          <div class="toggle-switch-container">
+            <input type="checkbox" id="enable-toggle" checked>
+            <span class="toggle-switch"></span>
+          </div>
+        </label>
+      </div>
+      
+      <p class="settings-description">
+        When enabled, a button will appear on LeetCode problem pages allowing you to save solutions to Collab IDE.
+      </p>
+    </div>
+    
+    <div class="actions-section">
+      <button id="view-solutions-button" class="primary-button">View My Solutions</button>
+      <div class="last-synced" id="last-synced"></div>
+    </div>
+    
+    <div class="footer">
+      <a href="https://colab-ide.vercel.app" target="_blank">Collab IDE</a>
+      <span>v1.0.0</span>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
