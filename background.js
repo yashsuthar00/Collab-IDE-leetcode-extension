@@ -1,6 +1,6 @@
 // Constants
-const API_BASE_URL = 'http://localhost:5000'; // Development URL
-// const API_BASE_URL = 'https://collab-ide-ep5q.onrender.com'; // Production URL
+// const API_BASE_URL = 'http://localhost:5000'; // Development URL
+const API_BASE_URL = 'https://collab-ide-ep5q.onrender.com'; // Production URL
 
 // Listen for installation
 chrome.runtime.onInstalled.addListener(() => {

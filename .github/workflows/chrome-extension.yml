@@ -1,56 +1,53 @@
 name: Build & Release Chrome Extension
 
-permissions:missions:
-  contents: writents: write
+permissions:
+  contents: write
 
 on:
   push:
-    tags:    tags:
-      - 'v*.*.*' - 'v*.*.*'
-  workflow_dispatch:ow_dispatch:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
 
-jobs:jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:    steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.jsjs
-        uses: actions/setup-node@v4        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18-version: 18
+          node-version: 18
 
-      - name: Install dependencies (if package.json exists)all dependencies (if package.json exists)
-        run: | |
-          if [ -f package.json ]; then          if [ -f package.json ]; then
+      - name: Install dependencies (if package.json exists)
+        run: |
+          if [ -f package.json ]; then
             npm ci
           fi
 
-      - name: Lint JavaScript (if eslint config exists)f eslint config exists)
-        run: | |
-          if [ -f package.json ] && [ -f .eslintrc ] || [ -f .eslintrc.js ] || [ -f .eslintrc.json ]; then          if [ -f package.json ] && [ -f .eslintrc ] || [ -f .eslintrc.js ] || [ -f .eslintrc.json ]; then
+      - name: Lint JavaScript (if eslint config exists)
+        run: |
+          if [ -f package.json ] && ([ -f .eslintrc ] || [ -f .eslintrc.js ] || [ -f .eslintrc.json ]); then
             npx eslint . || true
           fi
 
-      - name: Prepare extension ZIP      - name: Prepare extension ZIP
+      - name: Prepare extension ZIP
         run: |
-          zip -r collab-ide-leetcode-extension.zip . -x "*.git*" "node_modules/*" "*.DS_Store" ".github/*"ension.zip . -x "*.git*" "node_modules/*" "*.DS_Store" ".github/*"
+          zip -r collab-ide-leetcode-extension.zip . -x "*.git*" "node_modules/*" "*.DS_Store" ".github/*"
 
       - name: Upload extension ZIP artifact
         uses: actions/upload-artifact@v4
-        with:        with:
-          name: collab-ide-leetcode-extensionn
-          path: collab-ide-leetcode-extension.zipp
-
-      - name: Create GitHub Release (on tag) Create GitHub Release (on tag)
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v1: softprops/action-gh-release@v1
         with:
-          files: collab-ide-leetcode-extension.zip          files: collab-ide-leetcode-extension.zip
+          name: collab-ide-leetcode-extension
+          path: collab-ide-leetcode-extension.zip
 
-
-
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        env:        env:
+      - name: Create GitHub Release (on tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: collab-ide-leetcode-extension.zip
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
