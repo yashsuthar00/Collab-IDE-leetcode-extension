@@ -1,6 +1,6 @@
 // Constants
-const API_BASE_URL = 'http://localhost:5000'; // Development URL
-// const API_BASE_URL = 'https://collab-ide-ep5q.onrender.com'; // Production URL
+// const API_BASE_URL = 'http://localhost:5000'; // Development URL
+const API_BASE_URL = 'https://collab-ide-ep5q.onrender.com'; // Production URL
 
 // DOM elements
 const authStatusElement = document.getElementById('auth-status');
@@ -152,6 +152,6 @@ function toggleExtension() {
 
 // View solutions in Collab IDE
 function viewSolutions() {
-  chrome.tabs.create({ url: 'http://localhost:5173/leetcode' });
-  // For production: chrome.tabs.create({ url: 'https://colab-ide.vercel.app/leetcode' });
+  // chrome.tabs.create({ url: 'http://localhost:5173/leetcode' });
+  chrome.tabs.create({ url: 'https://colab-ide.vercel.app/leetcode' }); // for production
 }

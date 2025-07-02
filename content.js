@@ -405,8 +405,8 @@ function viewSolutions() {
   // Open the Collab IDE solutions page in a new tab
   chrome.runtime.sendMessage({ type: 'CHECK_AUTH' }, (response) => {
     if (response.isAuthenticated) {
-      window.open('http://localhost:5173/leetcode', '_blank');
-      // For production: window.open('https://colab-ide.vercel.app/leetcode', '_blank');
+      // window.open('http://localhost:5173/leetcode', '_blank');
+      window.open('https://colab-ide.vercel.app/leetcode', '_blank');
     } else {
       const statusElement = document.getElementById('collab-ide-status');
       statusElement.textContent = 'Please log in first to view your solutions';
